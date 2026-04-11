@@ -1,10 +1,10 @@
 import RevealOnScroll from "./RevealOnScroll";
 
 const projects = [
-  { title: "Driven", category: "Automotive", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
-  { title: "Aura", category: "Brand Visuals", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
-  { title: "Pulse", category: "Short-form", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" },
-  { title: "Neon", category: "Promo", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4" },
+  { title: "Driven", category: "Automotive", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", poster: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=800&auto=format&fit=crop" },
+  { title: "Aura", category: "Brand Visuals", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4", poster: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop" },
+  { title: "Pulse", category: "Short-form", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4", poster: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" },
+  { title: "Neon", category: "Promo", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4", poster: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800&auto=format&fit=crop" },
 ];
 
 export default function Work() {
@@ -34,6 +34,8 @@ export default function Work() {
                 loop 
                 muted 
                 playsInline 
+                preload="auto"
+                poster={project.poster}
                 className="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out opacity-70 group-hover:opacity-100"
               >
                 <source src={project.video} type="video/mp4" />
