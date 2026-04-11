@@ -1,53 +1,61 @@
 import RevealOnScroll from "./RevealOnScroll";
 
 const projects = [
-  { title: "Driven", category: "Automotive Content", description: "High-octane launch campaign for a new luxury sports line.", image: "bg-surface/50" },
-  { title: "Aura", category: "Brand Visuals", description: "Minimalist fashion lookbook and social assets.", image: "bg-border-sub/50" },
-  { title: "Pulse", category: "Short-form Edits", description: "Viral TikTok and Reel campaigns for lifestyle brands.", image: "bg-[#111]" },
-  { title: "Neon Nights", category: "Promotional Shoots", description: "Event coverage and promotional video for a music festival.", image: "bg-surface/40" },
-  { title: "Horizon", category: "Creative Campaigns", description: "A cinematic documentary style brand piece.", image: "bg-[#161616]" },
-  { title: "Echo", category: "Social Media Production", description: "A full month of continuous social content and engagement.", image: "bg-[#1a1a1a]" }
+  { title: "Driven", category: "Automotive", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" },
+  { title: "Aura", category: "Brand Visuals", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" },
+  { title: "Pulse", category: "Short-form", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" },
+  { title: "Neon", category: "Promo", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4" },
 ];
 
 export default function Work() {
   return (
-    <section id="work" className="py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-border/50">
+    <section id="work" className="py-32 px-6 md:px-12 max-w-7xl mx-auto bg-bg">
       <RevealOnScroll>
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-6">
           <div>
-            <h2 className="text-xs tracking-[0.2em] text-accent uppercase mb-4">Selected Work</h2>
-            <h3 className="text-4xl md:text-5xl font-display text-fg">Featured Projects</h3>
+            <h2 className="text-xs tracking-[0.3em] text-accent font-bold uppercase mb-6 flex items-center gap-4">
+              <span className="w-10 h-[1px] bg-accent"></span> Selected Work
+            </h2>
+            <h3 className="text-5xl md:text-7xl font-display font-black tracking-tighter text-fg uppercase">Featured<br/>Projects</h3>
           </div>
-          <a href="#work" className="text-sm border-b border-border hover:border-accent hover:text-accent pb-1 transition-colors uppercase tracking-widest w-max text-muted-light hidden sm:inline-flex">
-            View Archive
+          <a href="#work" className="text-sm border-b pb-1 border-border hover:border-accent transition-colors uppercase tracking-widest font-bold text-fg-muted inline-flex items-center gap-2 group">
+            View Archive 
+            <svg className="w-4 h-4 group-hover:translate-x-1 group-hover:text-accent transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
         </div>
       </RevealOnScroll>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
         {projects.map((project, i) => (
-          <RevealOnScroll key={i} className="group cursor-pointer">
-            <div className={`aspect-[4/3] w-full ${project.image} mb-6 overflow-hidden relative flex items-center justify-center transition-transform duration-700`}>
-              <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none" />
-              {/* Image Placeholder */}
-              <span className="text-muted opacity-50 uppercase tracking-widest text-xs z-0 pointer-events-none">Image Placeholder</span>
-               {/* Hover Effect scale on 'img' equivalent */}
-               <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out z-0 pointer-events-none" />
+          <RevealOnScroll key={i} className={`group cursor-pointer ${i % 2 !== 0 ? 'md:mt-32' : ''}`}>
+            <div className="aspect-[4/5] rounded-[2.5rem] w-full bg-surface mb-8 overflow-hidden relative flex items-center justify-center border border-border group-hover:border-accent/30 transition-colors duration-500">
+              <video 
+                autoPlay 
+                loop 
+                muted 
+                playsInline 
+                className="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out opacity-70 group-hover:opacity-100"
+              >
+                <source src={project.video} type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 bg-bg/30 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+              
+              <div className="absolute inset-0 bg-gradient-to-t from-bg/90 pb-10 px-10 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    <span className="inline-block px-4 py-1.5 border border-accent/50 text-accent text-[10px] tracking-widest uppercase rounded-full mb-3 backdrop-blur-md font-bold">Play Reel</span>
+                  </div>
+              </div>
             </div>
-            <div>
-              <div className="text-xs text-muted-light tracking-widest uppercase mb-2">{project.category}</div>
-              <h4 className="text-2xl font-display text-fg mb-2">{project.title}</h4>
-              <p className="text-muted-light text-sm line-clamp-2 md:pr-12">{project.description}</p>
+            
+            <div className="px-2">
+              <div className="text-xs text-accent tracking-[0.2em] font-bold uppercase mb-3">{project.category}</div>
+              <h4 className="text-3xl md:text-5xl font-display font-black tracking-tight text-fg group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fg group-hover:to-accent transition-all duration-300">
+                {project.title}
+              </h4>
             </div>
           </RevealOnScroll>
         ))}
       </div>
-      
-      <RevealOnScroll className="flex justify-center mt-20">
-         <button className="px-8 py-4 border border-border text-fg hover:border-fg transition-colors duration-300 font-medium tracking-wide uppercase text-sm">
-            Load More
-         </button>
-      </RevealOnScroll>
     </section>
   );
 }

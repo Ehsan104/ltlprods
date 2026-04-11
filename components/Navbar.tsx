@@ -20,19 +20,19 @@ export default function Navbar() {
   ];
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${scrolled ? "bg-bg/90 backdrop-blur-md border-border py-4" : "bg-transparent border-transparent py-6"}`}>
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${scrolled ? "bg-bg/80 backdrop-blur-xl border-border py-4" : "bg-transparent border-transparent py-8"}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        <a href="#home" className="text-xl tracking-widest font-display font-medium text-fg uppercase">LTL</a>
+        <a href="#home" className="text-2xl tracking-[0.2em] font-display font-black text-fg uppercase">LTL</a>
         
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-sm font-medium tracking-wide text-muted-light hover:text-fg transition-colors">
+            <a key={link.name} href={link.href} className="text-xs font-bold tracking-widest text-fg-muted hover:text-accent transition-colors uppercase">
               {link.name}
             </a>
           ))}
         </nav>
         
-        <a href="#contact" className="hidden md:inline-flex px-5 py-2 text-sm border border-border-sub hover:border-accent hover:text-accent transition-colors rounded-sm tracking-widest uppercase text-muted-light bg-surface/50">
+        <a href="#contact" className="hidden md:inline-flex px-6 py-3 text-xs font-bold border border-border-sub hover:border-accent hover:text-accent transition-colors rounded-full tracking-widest text-fg bg-surface/50 uppercase">
           Get in touch
         </a>
       </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Cormorant } from "next/font/google";
+import { Outfit, Montserrat } from "next/font/google";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -7,10 +7,10 @@ const outfit = Outfit({
   subsets: ["latin"],
 });
 
-const cormorant = Cormorant({
-  variable: "--font-cormorant",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${outfit.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-body bg-bg text-fg">
         {children}
