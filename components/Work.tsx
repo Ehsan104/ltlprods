@@ -36,8 +36,11 @@ function ProjectCard({ project, i }: { project: any, i: number }) {
       setIsMobile(isTouchDevice);
 
       if (isTouchDevice) {
-        // Mobile: lock visuals on and let native autoPlay continue
+        // Mobile: lock visuals on and aggressively force autoPlay
         setIsPlaying(true);
+        if (videoRef.current) {
+          videoRef.current.play().catch(() => {});
+        }
       } else {
         // Desktop: forcefully pause the native autoPlay exactly when the page loads, preserving hover effect!
         if (videoRef.current) {
@@ -68,11 +71,7 @@ function ProjectCard({ project, i }: { project: any, i: number }) {
         </video>
         <div className={`absolute inset-0 transition-colors duration-700 pointer-events-none ${isPlaying ? 'bg-transparent' : 'bg-bg/30 group-hover:bg-transparent'}`} />
 
-        <div className={`absolute inset-0 bg-gradient-to-t from-bg/90 pb-10 px-10 flex flex-col justify-end transition-opacity duration-500 pointer-events-none ${isPlaying ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
-          <div className={`transition-transform duration-500 ease-out ${isPlaying ? 'translate-y-0' : 'translate-y-8 group-hover:translate-y-0'}`}>
-            <span className="inline-block px-4 py-1.5 border border-accent/50 text-accent text-[10px] tracking-widest uppercase rounded-full mb-3 backdrop-blur-md font-bold">Play Reel</span>
-          </div>
-        </div>
+
       </div>
 
       <div className="px-2 pt-2">
