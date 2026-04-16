@@ -51,7 +51,7 @@ function ImageSlideshow({ images }: { images: string[] }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 4500); // Beautiful, slow 4.5 second fades
+    }, 3500); // Beautiful, slow 4.5 second fades
     return () => clearInterval(timer);
   }, [images.length]);
 
