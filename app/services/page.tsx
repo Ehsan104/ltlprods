@@ -28,7 +28,7 @@ const services = [
   {
     title: "Ad Campaigns",
     description: "Strategic media buying and creation optimized for conversion. We dominate Facebook, Instagram, and Google with compelling video funnels.",
-    image: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=1600&auto=format&fit=crop",
+    image: "/ad.jpeg",
     tags: ["Facebook Ads", "Instagram", "Google Ads"]
   },
   {
