@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import RevealOnScroll from "./RevealOnScroll";
 
 const projects = [
@@ -11,23 +11,53 @@ const projects = [
 
 function ProjectCard({ project, i }: { project: any, i: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
+  // Desktop hover mechanics
   const handleMouseEnter = () => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => { }); // Catch prevents console errors if user mouses out rapidly
+      videoRef.current.play().catch(() => { });
+      setIsPlaying(true);
     }
   };
 
   const handleMouseLeave = () => {
     if (videoRef.current) {
       videoRef.current.pause();
+      setIsPlaying(false);
     }
   };
+
+  // Mobile scroll mechanics
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              videoRef.current?.play().catch(() => {});
+              setIsPlaying(true);
+            } else {
+              videoRef.current?.pause();
+              setIsPlaying(false);
+            }
+          });
+        },
+        { threshold: 0.6 } // Trigger when 60% of the video is vertically centered on the phone screen
+      );
+
+      if (videoRef.current) {
+        observer.observe(videoRef.current);
+      }
+
+      return () => observer.disconnect();
+    }
+  }, []);
 
   return (
     <RevealOnScroll className={`group cursor-pointer ${i % 2 !== 0 ? 'md:mt-32' : ''}`}>
       <div
-        className="aspect-[4/5] rounded-[2.5rem] w-full bg-surface mb-8 overflow-hidden relative flex items-center justify-center border border-border group-hover:border-accent/30 transition-colors duration-500"
+        className={`aspect-[4/5] rounded-[2.5rem] w-full bg-surface mb-8 overflow-hidden relative flex items-center justify-center border transition-colors duration-500 ${isPlaying ? 'border-accent/30' : 'border-border group-hover:border-accent/30'}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -37,21 +67,21 @@ function ProjectCard({ project, i }: { project: any, i: number }) {
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out opacity-70 group-hover:opacity-100"
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-out ${isPlaying ? 'scale-100 opacity-100' : 'scale-105 opacity-70 group-hover:scale-100 group-hover:opacity-100'}`}
         >
           <source src={project.video} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-bg/30 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+        <div className={`absolute inset-0 transition-colors duration-700 pointer-events-none ${isPlaying ? 'bg-transparent' : 'bg-bg/30 group-hover:bg-transparent'}`} />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-bg/90 pb-10 px-10 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-          <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+        <div className={`absolute inset-0 bg-gradient-to-t from-bg/90 pb-10 px-10 flex flex-col justify-end transition-opacity duration-500 pointer-events-none ${isPlaying ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+          <div className={`transition-transform duration-500 ease-out ${isPlaying ? 'translate-y-0' : 'translate-y-8 group-hover:translate-y-0'}`}>
             <span className="inline-block px-4 py-1.5 border border-accent/50 text-accent text-[10px] tracking-widest uppercase rounded-full mb-3 backdrop-blur-md font-bold">Play Reel</span>
           </div>
         </div>
       </div>
 
       <div className="px-2 pt-2">
-        <h4 className="text-3xl md:text-5xl font-display font-black tracking-tight text-fg group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fg group-hover:to-accent transition-all duration-300">
+        <h4 className={`text-3xl md:text-5xl font-display font-black tracking-tight transition-all duration-300 ${isPlaying ? 'text-transparent bg-clip-text bg-gradient-to-r from-fg to-accent' : 'text-fg group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fg group-hover:to-accent'}`}>
           {project.title}
         </h4>
       </div>
