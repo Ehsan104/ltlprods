@@ -1,11 +1,63 @@
+"use client";
+import { useRef } from "react";
 import RevealOnScroll from "./RevealOnScroll";
 
 const projects = [
-  { title: "Driven", category: "Automotive", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", poster: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=800&auto=format&fit=crop" },
-  { title: "Aura", category: "Brand Visuals", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4", poster: "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=800&auto=format&fit=crop" },
-  { title: "Pulse", category: "Short-form", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4", poster: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" },
-  { title: "Neon", category: "Promo", video: "https://storage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4", poster: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800&auto=format&fit=crop" },
+  { title: "Signture Shine Detailing", category: "Automive", video: "/details.mp4" },
+  { title: "Miftaah Institute", category: "Brand Visuals", video: "/miftaah.mp4" },
+  { title: "Suvai Taste of India", category: "Short-form", video: "/restaurant.mp4" },
+  { title: "Smasherz", category: "Promo", video: "/smasherz.mp4" },
 ];
+
+function ProjectCard({ project, i }: { project: any, i: number }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => { }); // Catch prevents console errors if user mouses out rapidly
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
+
+  return (
+    <RevealOnScroll className={`group cursor-pointer ${i % 2 !== 0 ? 'md:mt-32' : ''}`}>
+      <div
+        className="aspect-[4/5] rounded-[2.5rem] w-full bg-surface mb-8 overflow-hidden relative flex items-center justify-center border border-border group-hover:border-accent/30 transition-colors duration-500"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <video
+          ref={videoRef}
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out opacity-70 group-hover:opacity-100"
+        >
+          <source src={project.video} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-bg/30 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-bg/90 pb-10 px-10 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+          <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+            <span className="inline-block px-4 py-1.5 border border-accent/50 text-accent text-[10px] tracking-widest uppercase rounded-full mb-3 backdrop-blur-md font-bold">Play Reel</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="px-2 pt-2">
+        <h4 className="text-3xl md:text-5xl font-display font-black tracking-tight text-fg group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fg group-hover:to-accent transition-all duration-300">
+          {project.title}
+        </h4>
+      </div>
+    </RevealOnScroll>
+  );
+}
 
 export default function Work() {
   return (
@@ -16,10 +68,10 @@ export default function Work() {
             <h2 className="text-xs tracking-[0.3em] text-accent font-bold uppercase mb-6 flex items-center gap-4">
               <span className="w-10 h-[1px] bg-accent"></span> Selected Work
             </h2>
-            <h3 className="text-5xl md:text-7xl font-display font-black tracking-tighter text-fg uppercase">Featured<br/>Projects</h3>
+            <h3 className="text-5xl md:text-7xl font-display font-black tracking-tighter text-fg uppercase">Featured<br />Projects</h3>
           </div>
           <a href="#work" className="text-sm border-b pb-1 border-border hover:border-accent transition-colors uppercase tracking-widest font-bold text-fg-muted inline-flex items-center gap-2 group">
-            View Archive 
+            View Archive
             <svg className="w-4 h-4 group-hover:translate-x-1 group-hover:text-accent transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
         </div>
@@ -27,35 +79,7 @@ export default function Work() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
         {projects.map((project, i) => (
-          <RevealOnScroll key={i} className={`group cursor-pointer ${i % 2 !== 0 ? 'md:mt-32' : ''}`}>
-            <div className="aspect-[4/5] rounded-[2.5rem] w-full bg-surface mb-8 overflow-hidden relative flex items-center justify-center border border-border group-hover:border-accent/30 transition-colors duration-500">
-              <video 
-                autoPlay 
-                loop 
-                muted 
-                playsInline 
-                preload="auto"
-                poster={project.poster}
-                className="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000 ease-out opacity-70 group-hover:opacity-100"
-              >
-                <source src={project.video} type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-bg/30 group-hover:bg-transparent transition-colors duration-700 pointer-events-none" />
-              
-              <div className="absolute inset-0 bg-gradient-to-t from-bg/90 pb-10 px-10 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="translate-y-8 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                    <span className="inline-block px-4 py-1.5 border border-accent/50 text-accent text-[10px] tracking-widest uppercase rounded-full mb-3 backdrop-blur-md font-bold">Play Reel</span>
-                  </div>
-              </div>
-            </div>
-            
-            <div className="px-2">
-              <div className="text-xs text-accent tracking-[0.2em] font-bold uppercase mb-3">{project.category}</div>
-              <h4 className="text-3xl md:text-5xl font-display font-black tracking-tight text-fg group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-fg group-hover:to-accent transition-all duration-300">
-                {project.title}
-              </h4>
-            </div>
-          </RevealOnScroll>
+          <ProjectCard key={i} project={project} i={i} />
         ))}
       </div>
     </section>

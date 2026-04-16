@@ -20,14 +20,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-bg/20" />
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-center h-full pt-20">
-        <RevealOnScroll>
-          <div className="inline-flex items-center gap-4 mb-6">
-            <span className="w-8 h-[1px] bg-accent"></span>
-            <span className="text-accent text-xs tracking-[0.4em] uppercase font-bold">LTL Productions</span>
-          </div>
-        </RevealOnScroll>
-        
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-center h-full pt-32 lg:pt-40">
         <RevealOnScroll>
           <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-display font-black leading-[0.9] tracking-tighter text-fg uppercase mb-8 ml-[-4px]">
             Visuals <br />
