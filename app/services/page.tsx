@@ -46,7 +46,7 @@ const services = [
   {
     title: "AI SEO",
     description: "Dominate search rankings using programmatic, LLM-powered strategies. We deploy sophisticated, modern AI algorithms to analyze search trends, optimize site structure, and aggressively scale your organic domain authority.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop",
+    image: "/seo.jpeg",
     tags: ["Programmatic SEO", "Organic Traffic", "Algorithm Optimization"]
   }
 ];
