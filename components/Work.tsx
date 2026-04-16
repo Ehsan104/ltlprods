@@ -4,7 +4,7 @@ import RevealOnScroll from "./RevealOnScroll";
 
 const projects = [
   { title: "Signture Shine Detailing", category: "Automive", video: "/details.mp4" },
-  { title: "Miftaah Institute", category: "Brand Visuals", video: "/miftaah.mp4" },
+  { title: "Brew Theory", category: "Brand Visuals", video: "/brew.mp4" },
   { title: "Suvai Taste of India", category: "Short-form", video: "/restaurant.mp4" },
   { title: "Smasherz", category: "Promo", video: "/smasherz.mp4" },
 ];
