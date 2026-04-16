@@ -29,15 +29,21 @@ function ProjectCard({ project, i }: { project: any, i: number }) {
     }
   };
 
-  // Mobile continuous play mechanics
+  // iOS Native Autoplay Bypass
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) {
-      setIsMobile(true);
-      setIsPlaying(true); // Lock it permanently into the active cinematic state
-      
-      // Force continuous auto-play
-      if (videoRef.current) {
-        videoRef.current.play().catch(() => {});
+    if (typeof window !== 'undefined') {
+      const isTouchDevice = window.matchMedia('(hover: none)').matches;
+      setIsMobile(isTouchDevice);
+
+      if (isTouchDevice) {
+        // Mobile: lock visuals on and let native autoPlay continue
+        setIsPlaying(true);
+      } else {
+        // Desktop: forcefully pause the native autoPlay exactly when the page loads, preserving hover effect!
+        if (videoRef.current) {
+          videoRef.current.pause();
+          videoRef.current.currentTime = 0; // Reset it to frame 1
+        }
       }
     }
   }, []);
@@ -51,6 +57,7 @@ function ProjectCard({ project, i }: { project: any, i: number }) {
       >
         <video
           ref={videoRef}
+          autoPlay // CRITICAL: This is required in the raw HTML for iPhones to bypass interaction blocks!
           loop
           muted
           playsInline
