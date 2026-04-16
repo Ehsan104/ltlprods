@@ -10,11 +10,9 @@ export default function Hero() {
           muted 
           playsInline
           preload="auto"
-          poster="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=2000&auto=format&fit=crop"
           className="w-full h-full object-cover opacity-50"
         >
-          <source src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4" />
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+          <source src="/nyc.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-transparent" />
         <div className="absolute inset-0 bg-bg/20" />
