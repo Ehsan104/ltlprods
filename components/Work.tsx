@@ -12,45 +12,33 @@ const projects = [
 function ProjectCard({ project, i }: { project: any, i: number }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Desktop hover mechanics
   const handleMouseEnter = () => {
-    if (videoRef.current) {
+    if (!isMobile && videoRef.current) {
       videoRef.current.play().catch(() => { });
       setIsPlaying(true);
     }
   };
 
   const handleMouseLeave = () => {
-    if (videoRef.current) {
+    if (!isMobile && videoRef.current) {
       videoRef.current.pause();
       setIsPlaying(false);
     }
   };
 
-  // Mobile scroll mechanics
+  // Mobile continuous play mechanics
   useEffect(() => {
     if (typeof window !== 'undefined' && window.matchMedia('(hover: none)').matches) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              videoRef.current?.play().catch(() => {});
-              setIsPlaying(true);
-            } else {
-              videoRef.current?.pause();
-              setIsPlaying(false);
-            }
-          });
-        },
-        { threshold: 0.6 } // Trigger when 60% of the video is vertically centered on the phone screen
-      );
-
+      setIsMobile(true);
+      setIsPlaying(true); // Lock it permanently into the active cinematic state
+      
+      // Force continuous auto-play
       if (videoRef.current) {
-        observer.observe(videoRef.current);
+        videoRef.current.play().catch(() => {});
       }
-
-      return () => observer.disconnect();
     }
   }, []);
 
