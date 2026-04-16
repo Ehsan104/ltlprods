@@ -38,10 +38,16 @@ const services = [
     tags: ["UI/UX Design", "Next.js Development", "SEO"]
   },
   {
-    title: "AI Receptionist",
-    description: "Never miss a lead again. We deploy incredibly smart, conversational AI systems to handle your calls, bookings, and customer inquiries 24/7.",
-    image: "https://images.unsplash.com/photo-1620712948343-00842367dce4?q=80&w=1600&auto=format&fit=crop",
-    tags: ["Phone Automation", "24/7 Answering", "Lead Capture"]
+    title: "AI Agents",
+    description: "We build incredibly smart, autonomous AI systems tailored to your workflows. From 24/7 Customer Support Agents that natively handle complex inquiries, to Lead Generation Agents that automatically capture and qualify prospects without human intervention.",
+    image: "/aiagents.jpeg",
+    tags: ["Customer Support", "Lead Generation", "Workflow Automation"]
+  },
+  {
+    title: "AI SEO",
+    description: "Dominate search rankings using programmatic, LLM-powered strategies. We deploy sophisticated, modern AI algorithms to analyze search trends, optimize site structure, and aggressively scale your organic domain authority.",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop",
+    tags: ["Programmatic SEO", "Organic Traffic", "Algorithm Optimization"]
   }
 ];
 
