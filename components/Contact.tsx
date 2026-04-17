@@ -14,13 +14,17 @@ export default function Contact() {
     const formData = new FormData(event.currentTarget);
     formData.append("access_key", "1104be00-5cc7-4a02-9cd5-addc85499ac3");
 
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
+          "Content-Type": "application/json",
           "Accept": "application/json"
         },
-        body: formData
+        body: json
       });
 
       const data = await response.json();
