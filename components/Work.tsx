@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import RevealOnScroll from "./RevealOnScroll";
 
 const projects = [
-  { title: "Signture Shine Detailing", category: "Automive", video: "/details.mp4" },
+  { title: "Arwa Yemeni Coffee", category: "Automive", video: "/arwa.mp4" },
   { title: "Brew Theory", category: "Brand Visuals", video: "/brew.mp4" },
   { title: "Suvai Taste of India", category: "Short-form", video: "/restaurant.mp4" },
   { title: "Smasherz", category: "Promo", video: "/smasherz.mp4" },
@@ -39,7 +39,7 @@ function ProjectCard({ project, i }: { project: any, i: number }) {
         // Mobile: lock visuals on and aggressively force autoPlay
         setIsPlaying(true);
         if (videoRef.current) {
-          videoRef.current.play().catch(() => {});
+          videoRef.current.play().catch(() => { });
         }
       } else {
         // Desktop: forcefully pause the native autoPlay exactly when the page loads, preserving hover effect!
