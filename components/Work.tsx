@@ -5,7 +5,7 @@ import RevealOnScroll from "./RevealOnScroll";
 const projects = [
   { title: "Arwa Yemeni Coffee", category: "Automive", video: "/arwa.mp4" },
   { title: "Brew Theory", category: "Brand Visuals", video: "/brew.mp4" },
-  { title: "Miftaah Institute", category: "Short-form", video: "/miftaah.mp4" },
+  { title: "Miftaah Institute", category: "Short-form", video: "/miftaahevent.mp4" },
   { title: "Smasherz", category: "Promo", video: "/smasherz.mp4" },
 ];
 
