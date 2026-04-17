@@ -9,7 +9,7 @@ const services = [
   {
     title: "Videography",
     description: "High-end cinematic video production tailored for modern brands. From striking commercials to engaging documentaries, our visuals speak louder.",
-    image: "https://images.unsplash.com/photo-1579965342575-16428a7c8881?q=80&w=1600&auto=format&fit=crop",
+    image: "/restaurant.mp4",
     tags: ["Commercials", "Documentaries", "Music Videos"]
   },
   {
