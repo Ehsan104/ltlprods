@@ -18,7 +18,7 @@ export default function Footer() {
         
         <div className="text-xs text-fg-muted text-center md:text-right space-y-3 font-light">
           <a href="mailto:ltlprodsc@gmail.com" className="block hover:text-accent font-medium transition-colors uppercase tracking-widest">ltlprodsc@gmail.com</a>
-          <p className="tracking-wide">&copy; {new Date().getFullYear()} LTL Productions. All rights reserved.</p>
+          <p className="tracking-wide">&copy; 2022 LTL Productions. All rights reserved.</p>
         </div>
       </div>
     </footer>
