@@ -11,7 +11,8 @@ export default function Contact() {
     setIsSubmitting(true);
     setResult("");
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
     formData.append("access_key", "1104be00-5cc7-4a02-9cd5-addc85499ac3");
 
     const object = Object.fromEntries(formData);
@@ -40,7 +41,7 @@ export default function Contact() {
 
       if (data.success) {
         setResult("Form Submitted Successfully!");
-        event.currentTarget.reset();
+        form.reset();
       } else {
         console.log("Error", data);
         setResult("API Error: " + (data.message || "Unknown error"));
