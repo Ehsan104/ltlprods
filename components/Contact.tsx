@@ -108,9 +108,12 @@ export default function Contact() {
                 required
               >
                 <option value="" disabled className="text-muted">Select an option</option>
-                <option value="commercial" className="text-bg bg-fg">Commercial Video</option>
-                <option value="social" className="text-bg bg-fg">Social Media Content</option>
+                <option value="videography" className="text-bg bg-fg">Videography</option>
                 <option value="photography" className="text-bg bg-fg">Photography</option>
+                <option value="ad-campaigns" className="text-bg bg-fg">Ad Campaigns</option>
+                <option value="websites" className="text-bg bg-fg">Websites</option>
+                <option value="ai-agents" className="text-bg bg-fg">AI Agents</option>
+                <option value="ai-seo" className="text-bg bg-fg">AI SEO</option>
                 <option value="other" className="text-bg bg-fg">Other</option>
               </select>
               <div className="pointer-events-none absolute inset-y-0 right-0 top-8 flex items-center px-2 text-accent">
