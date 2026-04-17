@@ -27,18 +27,27 @@ export default function Contact() {
         body: json
       });
 
-      const data = await response.json();
+      const text = await response.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (e: any) {
+        console.error("Non-JSON response:", text);
+        setResult(`Error: Expected JSON, got HTML (Status: ${response.status})`);
+        setIsSubmitting(false);
+        return;
+      }
 
       if (data.success) {
         setResult("Form Submitted Successfully!");
         event.currentTarget.reset();
       } else {
         console.log("Error", data);
-        setResult(data.message);
+        setResult("API Error: " + (data.message || "Unknown error"));
       }
-    } catch (error) {
-       console.log("Error", error);
-       setResult("Something went wrong!");
+    } catch (error: any) {
+       console.error("Fetch error:", error);
+       setResult("Network Error: " + error.message);
     }
 
     setIsSubmitting(false);
