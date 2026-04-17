@@ -115,6 +115,15 @@ export default function ServicesPage() {
               <div className="aspect-[4/3] rounded-[2.5rem] overflow-hidden group border border-border relative">
                 {service.images ? (
                   <ImageSlideshow images={service.images} />
+                ) : service.image?.endsWith('.mp4') ? (
+                  <video
+                    src={service.image}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                  />
                 ) : (
                   <div
                     className="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-1000"
