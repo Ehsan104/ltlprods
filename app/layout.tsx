@@ -14,7 +14,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "LTL Productions | Visual Storytelling",
+  title: "LTL Productions",
   description: "A premium creative production company specializing in high-quality visual storytelling and branded content.",
 };
 

@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import ServicesSnippet from "../components/ServicesSnippet";
 import Work from "../components/Work";
 import About from "../components/About";
 import Contact from "../components/Contact";
@@ -11,6 +12,7 @@ export default function Home() {
       <div className="grain-overlay" />
       <Navbar />
       <Hero />
+      <ServicesSnippet />
       <Work />
       <About />
       <Contact />
